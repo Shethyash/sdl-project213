@@ -1,0 +1,34 @@
+{% extends "base.html" %}
+{% block title %} User {% endblock title %}
+{% block content %}
+  <div class="row pb-3">
+    <div class="col-6">
+      <h3>List of User</h3>
+    </div>
+    <div class="col-6">
+      <a href="#" class="btn btn-primary float-end">
+        <i class="fa-solid fa-user-plus"></i>
+      </a>
+    </div>
+  </div>
+
+  <table class="table table-striped">
+    <tr>
+      <td>ID</td>
+      <td>UserName</td>
+      <td>Name</td>
+      <td>Email</td>
+      <td>Role</td>
+    </tr>
+    {% for user in users %}
+      <tr>
+        <td>{{ user.id }}</td>
+        <td>{{ user.username }}</td>
+        <td>{{ user.first_name }} {{ user.last_name }}</td>
+        <td>{{ user.email }}</td>
+        <td>{{ user.is_superuser }}</td>
+      </tr>
+    {% endfor %}
+  </table>
+
+{% endblock content %}

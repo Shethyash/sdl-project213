@@ -1,0 +1,111 @@
+{% extends "base.html" %}
+{% block title %}Profile Page{% endblock title %}
+
+{% block content %}
+  <div class="row my-3 p-3">
+    <img
+        class="rounded-circle account-img"
+        src="{{ user.profile.avatar.url }} "
+        style="cursor: pointer"
+        alt="User Profile Picture"/>
+    {{ user.profile.avatar.url }}
+  </div>
+  <div class="form-content">
+    <form method="post" enctype="multipart/form-data">
+      {% csrf_token %}
+      <div class="form-row">
+        <div class="col-md-5">
+          <div class="form-group">
+            <div class="row">
+              <div class="col-md-6">
+                <div class="form-group">
+                  <label class="small mb-1">First Name</label>
+                  {{ user_form.first_name }}
+                  {% if user_form.first_name.errors %}
+                    <div class="alert alert-danger alert-dismissible" role="alert">
+                      <div id="form_errors">
+                        <strong>{{ user_form.first_name.errors }}</strong>
+                      </div>
+                      <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close">
+                      </button>
+                    </div>
+                  {% endif %}
+                </div>
+              </div>
+              <div class="col-md-6">
+                <div class="form-group">
+                  <label class="small mb-1">Last Name</label>
+                  {{ user_form.last_name }}
+                  {% if user_form.last_name.errors %}
+                    <div class="alert alert-danger alert-dismissible" role="alert">
+                      <div id="form_errors">
+                        <strong>{{ user_form.last_name.errors }}</strong>
+                      </div>
+                      <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close">
+                      </button>
+                    </div>
+                  {% endif %}
+                </div>
+              </div>
+            </div>
+            <div class="row">
+              <div class="col-md-12">
+                <div class="form-group">
+                  <label class="small mb-1">Username:</label>
+                  {{ user_form.username }}
+                  {% if user_form.username.errors %}
+                    <div class="alert alert-danger alert-dismissible" role="alert">
+                      <div id="form_errors">
+                        <strong>{{ user_form.username.errors }}</strong>
+                      </div>
+                      <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close">
+                      </button>
+                    </div>
+                  {% endif %}
+                </div>
+              </div>
+            </div>
+            <div class="row">
+              <div class="col-md-12">
+                <div class="form-group">
+                  <label class="small mb-1">Email:</label>
+                  {{ user_form.email }}
+                  {% if user_form.email.errors %}
+                    <div class="alert alert-danger alert-dismissible" role="alert">
+                      <div id="form_errors">
+                        <strong>{{ user_form.email.errors }}</strong>
+                      </div>
+                      <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close">
+                      </button>
+                    </div>
+                  {% endif %}
+                </div>
+              </div>
+            </div>
+            <div class="row">
+              <div class="col-md-12">
+                <div class="form-group">
+                  <hr/>
+                  <label class="small mb-1">Change Avatar:</label>
+                  {{ profile_form.avatar }}
+                </div>
+              </div>
+            </div>
+            <div class="row">
+              <div class="col-md-12">
+                <div class="form-group">
+                  <label class="small mb-1">Bio:</label>
+                  {{ profile_form.bio }}
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+        <br/>
+        <button type="submit" class="btn btn-dark">Save</button>
+        <button type="reset" class="btn btn-dark">Reset</button>
+        <a href="{% url 'password_change' %}" class="btn btn-dark">Change Password</a>
+      </div>
+    </form>
+  </div>
+{% endblock content %}

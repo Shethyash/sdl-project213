@@ -1,0 +1,106 @@
+{% extends "base.html" %}
+{% block title %}
+  {% if node_id %}
+    Edit Node
+  {% else %}
+    Node Register
+  {% endif %}
+{% endblock title %}
+{% block content %}
+  <div class="form-content my-3">
+    <div class="container">
+      <div class="row justify-content-center">
+        <div class="col-lg-7">
+          <div class="card shadow-lg border-0 rounded-lg mt-0 mb-5">
+            <div class="card-header justify-content-center">
+              <h3 class="font-weight-light my-4 text-center">
+                {% if node_id %}
+                  Edit Node
+                {% else %}
+                  Create Node
+                {% endif %}
+              </h3>
+            </div>
+            <div class="card-body">
+              <form method="POST">
+                {% csrf_token %} {% if form.errors %}
+                <div class="alert alert-danger alert-dismissible" role="alert">
+                  <div id="form_errors">
+                    {% for key, value in form.errors.items %}
+                      <strong>{{ value }}</strong>
+                    {% endfor %}
+                  </div>
+                  <button
+                      type="button"
+                      class="close"
+                      data-dismiss="alert"
+                      aria-label="Close"
+                  >
+                    <span aria-hidden="true">&times;</span>
+                  </button>
+                </div>
+              {% endif %}
+                <input type="hidden" name="node_id" value="{{ node_id }}">
+                <div class="row">
+                  <div class="col-md-6">
+                    <div class="form-group">
+                      <label class="small mb-1">Name</label>
+                      {{ form.name }}
+                    </div>
+                  </div>
+                  <div class="col-md-6">
+                    <div class="form-group">
+                      <label class="small mb-1">Status</label>
+                      <div class="container">
+                        <div class="row">
+                          {% for radio in form.status %}
+                            <div class="form-check col-6">
+                              {{ radio.tag }}
+                              <label class="form-check-label" for="{{ radio.id_for_label }}">
+                                {{ radio.choice_label }}
+                              </label>
+                            </div>
+                          {% endfor %}
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+                <div class="row">
+                  <div class="col-md-6">
+                    <div class="form-group">
+                      <label class="small mb-1">Latitude</label>
+                      {{ form.latitude }}
+                    </div>
+                  </div>
+                  <div class="col-md-6">
+                    <div class="form-group">
+                      <label class="small mb-1">longitude</label>
+                      {{ form.longitude }}
+                    </div>
+                  </div>
+                </div>
+                <div class="form-row">
+                  <div class="col-12">
+                    <div class="form-group">
+                      <label class="small mb-1">Description</label>
+                      {{ form.description }}
+                    </div>
+                  </div>
+
+                </div>
+                <div class="form-group mt-4 mb-0">
+                  <button type="submit" class="col-md-12 btn btn-dark">
+                    Save
+                  </button
+                  >
+                  <br/><br/>
+                </div>
+              </form>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+{% endblock content %}

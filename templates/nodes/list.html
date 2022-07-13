@@ -1,0 +1,63 @@
+{% extends "base.html" %}
+{% block title %} Nodes {% endblock title %}
+{% block content %}
+  <div class="row">
+    <div class="col-6">
+      <h3>Nodes</h3>
+    </div>
+    <div class="col-6">
+      <a href="crud" class="btn btn-info float-end">
+        <span><i class="fa-solid fa-circle-plus"></i></span>
+      </a>
+    </div>
+  </div>
+
+  <div class="row mt-3">
+    {% for val in data %}
+      <div class="col-xs-2 col-sm-4 col-md-3">
+        <div class="card"
+            {% if val.status %}
+             style="background-color:rgba(152,251,152,0.2); margin: 5px"
+            {% else %}
+             style="background-color:rgba(108,117,125,0.15); margin: 5px"
+            {% endif %}
+        >
+          <div class=" card-body">
+            <h5 class="card-title">
+              {{ val.name }}
+              <span class="float-right">
+              {% if val.status %}
+                <i class="fa-solid fa-circle" style="color: green"></i>
+              {% else %}
+                <i class="fa-solid fa-circle" style="color: #6c757d"></i>
+              {% endif %}
+            </span>
+            </h5>
+            <p class=" card-text">{{ val.description }}</p>
+
+            <p class="card-text" style="margin-bottom: 0">
+              <label class="font-weight-bold">Latitude : </label>{{ val.latitude }}
+            </p>
+            <p class="card-text" style="margin-bottom: 0">
+              <label class="font-weight-bold">Longitude : </label> {{ val.longitude }}
+            </p>
+          </div>
+          <div class="card-footer">
+            <a href="get_feeds/{{ val.id }}" class="btn btn-secondary">
+              Feeds
+            </a>
+            <span class="float-end">
+              <a href="crud?id={{ val.id }}" class="btn transparent_btn">
+                <i class="fa-solid fa-pen" style="color: #6c757d"></i>
+              </a>
+              <a href="delete_node/{{ val.id }}" class="btn transparent_btn">
+                <i class="fa-solid fa-trash-can" style="color: #6c757d"></i>
+              </a>
+            </span>
+          </div>
+        </div>
+      </div>
+    {% endfor %}
+  </div>
+
+{% endblock content %}

@@ -1,0 +1,62 @@
+{% extends "base.html" %}
+{% load static %}
+{% block title %} Nodes {% endblock title %}
+
+
+{% block content %}
+  <h4>Node : {{ node.name }} </h4>
+  <div class="row">
+    <div class="col-md-6 border border-dark rounded">
+      <h5 id="myChart1_title">title</h5>
+      <div class="MyCanvas1" style="height: 100%;width: 100%;background-color:white;">
+        <canvas id="myChart1" style="width:auto;height:auto">CanVas
+        </canvas>
+      </div>
+    </div>
+
+    <div class="col-md-6 border border-dark rounded">
+      <h5 id="myChart2_title">title</h5>
+      <div class="MyCanvas2" style="height: 100%;width: 100%;background-color:white;">
+        <canvas id="myChart2" style="width:auto;height:auto">CanVas
+        </canvas>
+      </div>
+    </div>
+  </div>
+  <div class="row">
+    <div class="col-md-6 border border-dark rounded">
+      <h5 id="myChart3_title">title</h5>
+      <div class="MyCanvas3" style="height: 100%;width: 100%;background-color:white;">
+        <canvas id="myChart3" style="width:auto;height:auto">CanVas
+        </canvas>
+      </div>
+    </div>
+    <div class="col-md-6 border border-dark rounded">
+      <h5 id="myChart4_title">title</h5>
+      <div class="MyCanvas4" style="height: 100%;width: 100%;background-color:white;">
+        <canvas id="myChart4" style="width:auto;height:auto">CanVas
+        </canvas>
+      </div>
+    </div>
+  </div>
+  <div class="row">
+    <div class="col-md-6 border border-dark rounded">
+      <h5 id="myChart5_title">title</h5>
+      <div class="MyCanvas5" style="height: 100%;width: 100%;background-color:white;">
+        <canvas id="myChart5" style="width:auto;height:auto">CanVas
+        </canvas>
+      </div>
+    </div>
+    <div class="col-md-6 border border-dark rounded">
+      <h5 id="myChart6_title">title</h5>
+      <div class="MyCanvas6" style="height: 100%;width: 100%;background-color:white;">
+        <canvas id="myChart6" style="width:auto;height:auto">CanVas
+        </canvas>
+      </div>
+    </div>
+  </div>
+
+  <script>
+      get_chart_data({{ node_id }});
+  </script>
+{% endblock content %}
+
